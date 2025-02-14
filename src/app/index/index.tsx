@@ -4,6 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
 import { Categories } from "@/components/categories"
+import { Link } from "@/components/link"
 
 export default function Index(){
     return(
@@ -17,6 +18,7 @@ export default function Index(){
            </View>
 
            <Categories />
+            <Link name="Rocketseat" url="https://rocketseat.com.br" onDetails={() => console.log("Clicou!")}/>
         </View>
     )
 }

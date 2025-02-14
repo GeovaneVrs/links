@@ -3,7 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
 import { router } from "expo-router"
-
+import { Input } from "@/components/input"
 import { Categories } from "@/components/categories"
 
 export default function Add(){
@@ -22,6 +22,11 @@ export default function Add(){
             </Text>
 
             <Categories />
+
+            <View style={styles.form}>
+              <Input placeholder="Nome"/>
+              <Input placeholder="Url"/>
+            </View>
         </View>
     )
 }

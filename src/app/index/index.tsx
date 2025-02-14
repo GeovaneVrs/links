@@ -3,8 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
-
-import { Category } from "@/components/category"
+import { Categories } from "@/components/categories"
 
 export default function Index(){
     return(
@@ -17,9 +16,7 @@ export default function Index(){
                 </TouchableOpacity>
            </View>
 
-           <Category name="projetos" icon="code" isSelected/>
-           <Category name="site" icon="language" isSelected={false}/>
-           <Category name="video" icon="movie" isSelected={false}/>
+           <Categories />
         </View>
     )
 }

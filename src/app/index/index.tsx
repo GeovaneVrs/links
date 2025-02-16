@@ -1,12 +1,12 @@
 import { View, Image, TouchableOpacity, FlatList, Modal, Text, Alert } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import { router } from "expo-router"
+import { router, useFocusEffect } from "expo-router"
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
 import { Categories } from "@/components/categories"
 import { Link } from "@/components/link"
 import { Option } from "@/components/option"
-import { useState, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { categories } from "@/utils/categories"
 import { LinkStorage, linkStorage } from "@/storage/link-storage"
 
@@ -17,7 +17,9 @@ export default function Index() {
     async function getLinks() {
         try {
             const response = await linkStorage.get()
-            setLinks(response)
+
+            const filtered = response.filter((link) => link.category === category)
+            setLinks(filtered)
 
         } catch (erro) {
             Alert.alert("Erro", "Não foi possível listar os links")
@@ -25,9 +27,11 @@ export default function Index() {
     }
 
 
-    useEffect(() => {
-        getLinks()
-    }, [category])
+    useFocusEffect(
+        useCallback(() => {
+            getLinks()
+        }, [category])
+    )
 
     return (
         <View style={styles.container}>
@@ -44,7 +48,7 @@ export default function Index() {
             <FlatList
                 data={links}
                 keyExtractor={item => item.id}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                     <Link
                         name={item.name}
                         url={item.url}

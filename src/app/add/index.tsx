@@ -7,7 +7,7 @@ import { router } from "expo-router"
 import { Input } from "@/components/input"
 import { Categories } from "@/components/categories"
 import { Button } from "@/components/button"
-import { LinkStorage } from "@/storage/link-storage"
+import { linkStorage } from "@/storage/link-storage"
 
 export default function Add() {
     const [category, setCategory] = useState("")
@@ -28,15 +28,12 @@ export default function Add() {
                 return Alert.alert("Url", "Informe a URL")
             }
 
-            await LinkStorage.save({
+            await linkStorage.save({
                 id: new Date().getTime().toString(),
                 name, 
                 url,
                 category
             })
-            const data = await LinkStorage.get()
-            console.log(data)
-
         } catch (error) {
             Alert.alert("Erro", "Não foi possível salvar o link")
             console.log(error)

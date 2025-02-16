@@ -3,7 +3,7 @@ import { store } from "expo-router/build/global-state/router-store";
 
 const LINK_STORAGE_KEY = "links-storage"
 
-type LinkStorage = {
+export type LinkStorage = {
     id: string
     name: string
     url: string
@@ -29,4 +29,4 @@ async function save(newLink: LinkStorage) {
     }
 }
 
-export const LinkStorage = { get, save}
+export const linkStorage = { get, save}
